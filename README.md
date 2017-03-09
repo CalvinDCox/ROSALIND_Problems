@@ -1,6 +1,6 @@
 # ROSALIND_Problems
-Repository for Rosalind Bioinformatics Challenge 
-Calvin D. Cox 
+##Repository for Rosalind Bioinformatics Challenge 
+Calvin D. Cox of Clemson University
 3/8/2017 
 
 ##### Objectives
