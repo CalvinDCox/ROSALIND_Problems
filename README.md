@@ -5,6 +5,6 @@ Calvin D. Cox of Clemson University
 
 ##### Objectives
 - To maintain basic coding principles and devolop sound skills in python programming.
-- See if ROSALIND has any new material that with help me expand my knowlege in bioinformatic analysis techniques
+- See if ROSALIND has any new material that will help me expand my knowlege in bioinformatic analysis techniques
 
 
