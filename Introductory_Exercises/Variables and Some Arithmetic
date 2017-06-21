@@ -1,0 +1,20 @@
+
+#Declare
+import numpy as np
+#First, upload text file so that numbers are put into a list.
+with open('rosalind_ini2.txt') as f:
+     input1 = []
+     for line in f:
+             line = line.split() #skips blank spaces and if the character is an int puts it into a list
+             if line:
+                     line = [int(i) for i in line] 
+                     input1.append(line)
+
+
+
+#converting to workable array
+np_input2 = np.array(input1)
+
+#performing the prompted Math operation
+squaret = (np_input2[0,0] ** 2) + (np_input2[0,1] ** 2)
+print(squaret)
