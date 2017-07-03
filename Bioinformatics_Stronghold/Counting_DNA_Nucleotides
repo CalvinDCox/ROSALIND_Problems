@@ -1,0 +1,19 @@
+# Counting DNA Nucleotides
+
+#http://rosalind.info/problems/dna/
+#Given: A DNA string ss of length at most 1000 nt.
+#Return: Four integers (separated by spaces) counting the respective number of times that the symbols 'A', 'C', 'G', and 'T' occur in ss.
+
+#Reading one line from input file
+with open('rosalind_dna.txt','r') as file:
+    cache = file.readline()
+    
+dna_cache = {}
+
+for letter in cache:
+    if letter in dna_cache:
+        dna_cache[letter] = dna_cache[letter] + 1
+    else:
+        dna_cache[letter] = 1
+        
+print(sorted(dna_cache.items()))
