@@ -1,0 +1,22 @@
+#Let's be practical
+#Calvin D. Cox
+#10/31/2017
+
+#Given: A DNA string ss of length at most 1000 bp.
+
+#Return: Four integers (separated by spaces) representing the respective number of times that the symbols 'A', 'C', 'G', and 'T' occur in ss. Note: You must provide your answer in the format shown in the sample output below.
+
+#Initializing
+from Bio.Seq import Seq
+
+file = open('exampletext.txt')
+sequence = file.readline()
+
+counts = Seq(sequence)
+
+A = counts.count("A")
+C = counts.count("C")
+T = counts.count("T")
+G = counts.count("G")
+
+print(str(A) + " " + str(C) + " " + str(T) + " " + str(G))
