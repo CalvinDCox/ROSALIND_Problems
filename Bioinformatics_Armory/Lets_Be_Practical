@@ -19,4 +19,4 @@ C = counts.count("C")
 T = counts.count("T")
 G = counts.count("G")
 
-print(str(A) + " " + str(C) + " " + str(T) + " " + str(G))
+print(str(A) + " " + str(C) + " " + str(G) + " " + str(T))
