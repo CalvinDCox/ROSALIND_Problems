@@ -3,15 +3,16 @@
 #10/31/2017
 
 #Given: A DNA string ss of length at most 1000 bp.
-
 #Return: Four integers (separated by spaces) representing the respective number of times that the symbols 'A', 'C', 'G', and 'T' occur in ss. Note: You must provide your answer in the format shown in the sample output below.
 
-#Initializing
+#Initializing BioPython, a tool recommended for use with this problem
 from Bio.Seq import Seq
 
+#Open file and read the first line
 file = open('exampletext.txt')
 sequence = file.readline()
 
+#This step, as I understand it, quantifies all the A, C, T's and G's as numbers, which I store in the simply named variables below
 counts = Seq(sequence)
 
 A = counts.count("A")
@@ -19,4 +20,5 @@ C = counts.count("C")
 T = counts.count("T")
 G = counts.count("G")
 
+#Print out output in the all important manditory format
 print(str(A) + " " + str(C) + " " + str(G) + " " + str(T))
