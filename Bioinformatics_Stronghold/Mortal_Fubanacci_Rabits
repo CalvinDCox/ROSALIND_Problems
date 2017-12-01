@@ -1,0 +1,33 @@
+#Mortal Fubanacci Rabbits
+#10/15/2017
+#Calvin D. Cox
+
+#Pulling generation and lifespan from a doc
+#For the moment we will manually put things in
+gens = 6
+lspan = 3
+
+#creating a blank memory bank and populating the values needed before the loop
+spanmem = [0] * lspan
+spanmem[1] = 1
+
+#Creating the sequence that will be storing rabbit info
+pairslast = 1
+pairs = [1,1]
+
+#setting up sequence
+i=3
+
+#Sequence
+while i <= gens:
+    x = pairs[-2]*k + pairs[-1] - spanmem[-1]
+    pairs.append(x)
+    for k in range(len(spanmem),-1,-1):
+        if k = 0:
+            spanmem[k] = pair[-1]
+        else:
+            spanmem[k] = 
+    i = i + 1
+    
+print(pairs[-1])
+
