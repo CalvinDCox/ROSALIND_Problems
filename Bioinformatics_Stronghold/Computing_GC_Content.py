@@ -10,12 +10,13 @@ file = open('exampletext.txt')
 fasta = file.readlines()
 #This stores the entire set of fasta files as a list
 
-#Now to split the files into a managable format
-nuc = ""
+#Now to split the files into a dict
+
 fastastore = {}
 for i in range(0, len(fasta)):
     if ">" in fasta[i]:
-        k = 1
+        k = 1 #Resets k for next set of nucs
+        nuc = "" #Resets nuc for next dictionary input
         try:
             while ">" not in fasta[i+k]:
                     nuc  += fasta[i+k].rstrip("\n")
