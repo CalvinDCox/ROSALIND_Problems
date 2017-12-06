@@ -28,7 +28,7 @@ for i in range(0, len(fasta)):
 #Calculate the File with the highest GC Content
 winner = ""
 winnergc = 0
- 
+
 for key, value in fastastore.items():
     AT = 0
     CG = 0
@@ -42,11 +42,13 @@ for key, value in fastastore.items():
             CG += 1
         elif i == "C":
             CG += 1
-            
+        
     gccontent = CG / (AT+CG)
     
-    if gccontent > winnergc:
-        winner = key
+   
+    
+    if (gccontent * 100) > winnergc:
+        winner = key 
         winnergc = gccontent * 100
 
 #Print the Winners
