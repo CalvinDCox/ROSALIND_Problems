@@ -6,8 +6,8 @@
 #Return: The ID of the string having the highest GC-content, followed by the GC-content of that string. Rosalind allows for a default error of 0.001 in all decimal answers unless otherwise stated; please see the note on absolute error below.
 
 #open file and store it in a variable
-file = open('exampletext.txt')
-fasta = file.readlines()
+with open('exampletext.txt') as file:
+    fasta = file.readlines()
 #This stores the entire set of fasta files as a list
 
 #Now to split the files into a dict
@@ -53,4 +53,4 @@ for key, value in fastastore.items():
 
 #Print the Winners
 print(winner.replace(">", ""))
-print(str(winnergc))
+print('%.6f' % winnergc)
