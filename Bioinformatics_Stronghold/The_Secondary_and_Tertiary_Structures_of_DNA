@@ -29,6 +29,7 @@ for i in dna:
   rna = rna + transcribe(i)
 
 #prints reverse of rna, which is actually just the complementary dna strand in this case
-print(rna[::-1])
+reverse(rna)
+print(rna)
  
  
