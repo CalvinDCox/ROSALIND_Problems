@@ -14,9 +14,15 @@ with open('exampletext.txt', 'r') as et:
 
 #Store permutation in an acceptable format to be sorted
 perm_store = []
-num_perm = prod(re.sub("[^A-Z]", "", data_set[0]), repeat=int(data_set[1]))
+num_perm = prod(re.sub("[^A-Z]", "", data_set[0]), repeat=int(re.sub("[^1-9]", "", data_set[1])))
 for i in list(num_perm):
     perm_store.append(re.sub("[^A-Z]", "", str(i)))
     
 #Sort permutation list
+## BUG seems to not want to not repeats.
 sorted(perm_store)
+
+with open('resulttext.txt', 'w') as rt:
+    for i in perm_store:
+        rt.write(i + '\n')
+    
