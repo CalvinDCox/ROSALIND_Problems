@@ -13,7 +13,7 @@ import collections
 with open('exampletext.txt', 'r') as et:
     data_set = et.readline()
 
-#Create chart with all possible permutations 
+#Create chart with all possible permutations entered characters in a mirrored manner
 i = 1
 ini_mirror = []
 while i <= int(data_set):
@@ -22,12 +22,14 @@ while i <= int(data_set):
     i += 1
     
 
-#Store permutation in an acceptable format to be sorted
+#Store permutation 
 perm_store = []
 num_perm = perm(ini_mirror, int(data_set))
+
+
 for i in list(num_perm):
-    ik = re.sub("[^\d+$]", "", str(i))
-    if len(set(ik)) == len(ik):
+    ik = re.sub("[^\d+$]", "", str(i)) #I could merge with the if but I reason this is cleaner
+    if len(set(ik)) == len(ik): #Gets rid of duplicates, which show up as false
         perm_store.append(re.sub("[^-\d+$ ]", "", str(i)))
     
 with open('resulttext.txt', 'w') as rt:
