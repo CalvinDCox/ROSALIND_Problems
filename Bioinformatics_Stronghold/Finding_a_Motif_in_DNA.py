@@ -9,13 +9,14 @@ import re
 
 with open('exampletext.txt', 'r') as et:
     data_set = et.readlines()
-    
-dna = data_set[0]
-primer = data_set[1]
 
+#Separating data and stripping away everything but nucs
+dna = re.sub("[^A-Z]", "", str(data_set[0]))
+primer = re.sub("[^A-Z]", "", str(data_set[1]))
+
+#Loop to compare a sliding window to the primer. Matches get dropped in a list to be printed out.
 matches = []
 i = 0
-
 while i < len(dna):
     if dna[i:i+len(primer)] == primer:
         matches.append(i+1)
