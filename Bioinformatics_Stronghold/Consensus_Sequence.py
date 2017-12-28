@@ -24,14 +24,15 @@ for i in range(0, len(fasta)):
         except IndexError:
             pass
         fastastore[fasta[i].rstrip("\n")] = nuc
-        
+      
 A, G, C, T = [], [], [], []       
-
-
+started = False
 for key, value in fastastore.items():
-    a_cnt, g_cnt, c_cnt, t_cnt = 0, 0, 0, 0
+
+    
     count = 0
     for mer in value:
+        a_cnt, g_cnt, c_cnt, t_cnt = 0, 0, 0, 0
         if mer == "A":
             a_cnt += 1
         elif mer == "G":
@@ -41,9 +42,16 @@ for key, value in fastastore.items():
         elif mer == "T":
             t_cnt += 1
         count +=1
-        
-        A.append(a_cnt)
-        G.append(g_cnt)
-        C.append(c_cnt)
-        T.append(t_cnt)
+        if started == False:
+            A.append(a_cnt)
+            G.append(g_cnt)
+            C.append(c_cnt)
+            T.append(t_cnt)
+            
+        else:
+            A[count-1] += a_cnt
+            G[count-1] += g_cnt
+            C[count-1] += c_cnt
+            T[count-1] += t_cnt
+    started = True
 
