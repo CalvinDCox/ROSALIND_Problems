@@ -2,8 +2,12 @@
 #Calvin D. Cox
 #12/19/2017
 
+
+
 #Given: A collection of at most 10 DNA strings of equal length (at most 1 kbp) in FASTA format.
 #Return: A consensus string and profile matrix for the collection. (If several possible consensus strings exist, then you may return any one of them.)
+
+import re
 
 #open file and store it in a variable
 with open('exampletext.txt') as file:
@@ -24,15 +28,17 @@ for i in range(0, len(fasta)):
         except IndexError:
             pass
         fastastore[fasta[i].rstrip("\n")] = nuc
-      
+
+#Initiating Items in Loop      
 A, G, C, T = [], [], [], []       
 started = False
+
+#Loop to go through all the nucs in each FASTA file
 for key, value in fastastore.items():
 
-    
     count = 0
     for mer in value:
-        a_cnt, g_cnt, c_cnt, t_cnt = 0, 0, 0, 0
+        a_cnt, g_cnt, c_cnt, t_cnt = 0, 0, 0, 0 #Set here to reset for each go through of k-mer
         if mer == "A":
             a_cnt += 1
         elif mer == "G":
@@ -55,3 +61,26 @@ for key, value in fastastore.items():
             T[count-1] += t_cnt
     started = True
 
+#Now that I have all the A's, C's, G's, T's stored its time to make the consensus sequence and display results.
+consensus_sequence = []
+for dd in range(len(A)):
+    placeholder = A[dd]
+    character = 'A'
+    if C[dd] > placeholder:
+        placeholder = C[dd]
+        character = 'C'
+    if G[dd] > placeholder:
+        placeholder = G[dd]
+        character = 'G'
+    if T[dd] > placeholder:
+        character = 'T'
+    
+    consensus_sequence.append(character)
+
+#Have to organize output
+with open('resulttext.txt', 'w') as rt:
+    rt.write("".join(consensus_sequence) + '\n')
+    rt.write("A: " + re.sub("[^0-9 ]", "", str(A)) + '\n')
+    rt.write("C: " + re.sub("[^0-9 ]", "", str(C)) + '\n')
+    rt.write("G: " + re.sub("[^0-9 ]", "", str(G)) + '\n')
+    rt.write("T: " + re.sub("[^0-9 ]", "", str(T)) + '\n')
