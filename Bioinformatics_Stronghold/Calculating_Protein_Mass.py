@@ -13,7 +13,8 @@ with open('Mono_pro.txt', 'r') as tf:
     pro_table = tf.readlines()
     
 mass = 0    
-    
+
+#pull info from table and get the mass from that row.
 for a in P:
     for amino in pro_table:
         if a in amino:
