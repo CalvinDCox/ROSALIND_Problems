@@ -1,0 +1,39 @@
+#Mortal Fibonacci Rabbits
+#1/29/2018
+#Calvin D. Cox
+
+#Given: Positive integers n≤100n≤100 and m≤20m≤20.
+#Return: The total number of pairs of rabbits that will remain after the nn-th month if all rabbits live for mm months.
+
+#Sample Dataset
+n = 90
+m = 17
+
+pairslast = 1
+pairs = [1,1]
+lifespan = [1,0]
+
+#setting up sequence
+i=3
+
+#Sequence iterates through all the months
+while i <= n:
+    #get birth for the memory list and the population list
+    if len(lifespan) >= m:
+        birth = sum(lifespan[-m:-1])
+    else:
+        birth = sum(lifespan[-2:])
+    
+    #calculate population before death
+    x = pairs[-1] + birth
+    
+    #calculating for death
+    if len(lifespan) >= m:
+        y = x - lifespan[-m]
+    else:
+        y = x
+    pairs.append(y)
+    lifespan.append(birth)
+    i = i + 1
+
+print(pairs[-1])
