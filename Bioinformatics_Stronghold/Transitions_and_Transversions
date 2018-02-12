@@ -1,0 +1,48 @@
+#Transitions and Transversions
+#Calvin D. Cox
+#2/11/2018
+
+#Given: Two DNA strings s1s1 and s2s2 of equal length (at most 1 kbp).
+#Return: The transition/transversion ratio R(s1,s2)R(s1,s2).
+
+#Opening file and saving the header name for later too hook into the counter later
+file = open('exampletext.txt')
+fasta = file.readlines()
+headings = []
+
+#These FASTA files can occur on multiple lines so I'm gonna run my old collector script here
+fastastore = {}
+for i in range(0, len(fasta)):
+    if ">" in fasta[i]:
+        headings.append(fasta[i].rstrip("\n"))
+        k = 1 #Resets k for next set of nucs
+        nuc = "" #Resets nuc for next dictionary input
+        try:
+            while ">" not in fasta[i+k]:
+                    nuc  += fasta[i+k].rstrip("\n")
+                    k += 1
+        except IndexError:
+            pass
+        fastastore[fasta[i].rstrip("\n")] = nuc
+
+
+dna1 = fastastore[headings[0]]
+dna2 = fastastore[headings[1]]
+
+#The loops following were origially there to count the deletions and other mistakes, but I converted them to look for transitions and transversions.
+count = 0
+transistions = 0
+transversions = 0
+
+transi_ex = ["A G", "C T", "T C", "G A"]
+transver_ex = ["A T", "T A", "C G", "G C", "A C", "C A", "G T", "T G"]
+
+for i,j in zip(dna1,dna2):
+    if i != j:
+        count += 1
+        if i + ' ' + j in transi_ex:
+            transistions += 1
+        if i + ' ' + j in transver_ex:
+            transversions += 1
+
+print(transistions/transversions)
