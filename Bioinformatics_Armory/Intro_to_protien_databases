@@ -1,0 +1,29 @@
+#Introduction to Protien Databases
+#3/28/2018
+#Calvin D. Cox
+
+#loading Modules
+from Bio import ExPASy
+from Bio import SwissProt
+
+#Adjusted to take care of files en masse
+with open('exampletext.txt') as file:
+    protiens = file.readlines()
+    protiens = protiens[0].rstrip()
+
+#Changing formatting to proper input for ExPASy
+input = ",".join(protiens)    
+function = []
+
+#running string through to get list of records
+id = ExPASy.get_sprot_raw(protiens)
+record = SwissProt.read(id)
+
+#Not sure this part will work yet if given more than one arguement.
+for term in record.cross_references:
+    if term[0] == "GO" and "P:" in term[2]:
+        function.append(term[2][2:])
+
+#Output
+print('\n'.join(function))
+    
