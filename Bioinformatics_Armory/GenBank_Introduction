@@ -1,0 +1,20 @@
+#GenBank Introduction
+#Calvin D. Cox
+#04/01/2018
+
+#Given: A genus name, followed by two dates in YYYY/M/D format.
+#Return: The number of Nucleotide GenBank entries for the given genus that were published between the dates specified.
+
+#Entrez Module suggested in programming shortcut
+from Bio import Entrez
+
+#open file
+with open('exampletext.txt') as file:
+    search_term = file.readlines()
+
+#More shortcut
+Entrez.email = "calvinc@g.clemson.edu"
+handle = Entrez.esearch(db="nucleotide", term=(search_term[0].rstrip() + '[Organism]'), datetype='pdat', maxdate=search_term[2].rstrip(), mindate=search_term[1].rstrip())
+record = Entrez.read(handle)
+record["Count"]
+
