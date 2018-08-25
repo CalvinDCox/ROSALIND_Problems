@@ -1,0 +1,48 @@
+#Locating Restriction Sites
+#Calvin D. Cox
+#6/2/2018
+
+#Open Fasta File
+with open('exampletext.txt') as file:
+    fasta = file.readlines()
+    
+strand = fasta[1]
+#cleared newlines
+strand = strand[:-1]
+i = 0
+k = 4
+
+#recepticle for coordinates
+restriction = []
+
+#looping through each nuc. and looking at the follwing nucs 4 out to 12 out, split that string in half and get the reverse complement of one side to compare.
+while i <= len(strand)-3:
+    k = 4
+    while k <= 12:
+    #Extract intresting part of string
+        xna = strand[i:i+k]
+        xna_new = []
+        #complement of 2nd half
+        for nuc in xna[k//2:]:
+            if nuc == "A":
+                xna_new.append("T")
+            elif nuc == "T":
+                xna_new.append("A")
+            elif nuc == "C":
+                xna_new.append("G")
+            else:
+                xna_new.append("C")    
+        #Comparing reverse complement        
+        if xna[:k//2] == "".join(xna_new[::-1]):
+            restriction.append(str(i+1) + " " + str(k))
+            
+        k += 2
+                
+    i += 1            
+
+#Output in requested format  
+f = open('resulttext.txt', 'w')
+for i in restriction:
+    f.write(i+"\n")
+    
+f.close()
